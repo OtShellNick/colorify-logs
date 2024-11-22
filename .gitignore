@@ -4,4 +4,3 @@ dist
 coverage
 src/tests/test.ts
 test.js
-yarn.lock
