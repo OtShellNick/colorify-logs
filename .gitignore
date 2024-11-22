@@ -1,0 +1,7 @@
+node_modules
+.idea
+dist
+coverage
+src/tests/test.ts
+test.js
+yarn.lock
