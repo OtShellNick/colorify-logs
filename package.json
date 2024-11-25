@@ -1,5 +1,5 @@
 {
-  "name": "colorify-logs",
+  "name": "colorify-log",
   "version": "1.0.0",
   "description": "A simple logger with colored output",
   "main": "dist/index.js",
