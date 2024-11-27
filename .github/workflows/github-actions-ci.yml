@@ -33,6 +33,6 @@ jobs:
           path: ./dist/
 
       - name: Publish NPM package
-        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
