@@ -1,5 +1,5 @@
 {
-  "name": "simple-color-log",
+  "name": "scolog",
   "version": "1.0.0",
   "description": "A simple logger with colored output",
   "main": "dist/index.js",
