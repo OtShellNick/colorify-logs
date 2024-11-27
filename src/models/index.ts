@@ -25,3 +25,7 @@ export enum EColorsVariants {
 }
 
 export type TTextColors = Record<EColorsVariants, string>;
+export type TLoggerSettings = {
+  showTime?: boolean;
+}
+export type TLog = (...args: any[]) => void;

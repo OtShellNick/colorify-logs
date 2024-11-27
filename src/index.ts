@@ -1,11 +1,14 @@
-import { EColorsVariants, TTextColors } from "./models";
+import { EColorsVariants, TLog, TTextColors, TLoggerSettings } from "./models";
 import { textColors } from "./utils";
+import { config } from "./config";
 
 export class Logger {
   private readonly textColors: TTextColors;
+  private readonly config: TLoggerSettings;
 
-  constructor() {
+  constructor(loggerConfig: TLoggerSettings = {}) {
     this.textColors = textColors;
+    this.config = { ...config, ...loggerConfig };
   }
 
   /**
@@ -14,7 +17,8 @@ export class Logger {
    * @returns Форматированное время.
    */
   private getTime(date: Date): string {
-    return date.toTimeString().split(" ")[0];
+    const [time] =  date.toTimeString().split(" ");
+    return time;
   }
 
   /**
@@ -22,9 +26,9 @@ export class Logger {
    * @param color - Цвет сообщения (red, green, yellow, blue).
    * @param args - Сообщения для логирования.
    */
-  public log(color: EColorsVariants, ...args: any[]): void {
-    console.log(
-      this.getTime(new Date()),
+  public log (color: EColorsVariants): TLog {
+    return (...args) => console.log(
+      this.config.showTime ? this.getTime(new Date()) : "",
       `${this.textColors[color]}`,
       ...args,
       this.textColors.reset,

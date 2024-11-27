@@ -4,10 +4,12 @@ import { EColorsVariants } from "../src/models";
 
 describe("Logger class", () => {
   let logger: Logger;
+  let timeLogger: Logger;
   let consoleSpy: jest.SpyInstance;
 
   beforeEach(() => {
     logger = new Logger();
+    timeLogger = new Logger({ showTime: true });
     consoleSpy = jest.spyOn(console, "log").mockImplementation(() => {});
   });
 
@@ -18,21 +20,22 @@ describe("Logger class", () => {
   it("should log a message with the correct color", () => {
     const message = "Test message";
 
-    logger.log(EColorsVariants.RED, message);
+    const log = logger.log(EColorsVariants.RED);
+    log(message);
 
-    // Проверяем, что console.log был вызван с правильными аргументами
     expect(consoleSpy).toHaveBeenCalledWith(
-      expect.any(String), // Текущее время
-      textColors.red, // Цвет сообщения
-      message, // Само сообщение
-      textColors.reset, // Сброс цвета
+      expect.any(String), 
+      textColors.red,
+      message, 
+      textColors.reset,
     );
   });
 
   it("should include the current time in the log message", () => {
     const message = "Test message";
 
-    logger.log(EColorsVariants.GREEN, message);
+    const log = timeLogger.log(EColorsVariants.GREEN);
+    log(message);
 
     // Проверяем, что время правильно добавляется в лог
     const loggedTime = consoleSpy.mock.calls[0][0];
