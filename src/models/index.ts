@@ -1,11 +1,4 @@
 export enum EColorsVariants {
-  RESET = "reset",
-  BRIGHT = "bright",
-  DIM = "dim",
-  UNDERSCORE = "underscore",
-  BLINK = "blink",
-  REVERSE = "reverse",
-  HIDDEN = "hidden",
   BLACK = "black",
   RED = "red",
   GREEN = "green",
@@ -24,8 +17,29 @@ export enum EColorsVariants {
   WHITE_BRIGHT = "whiteBright",
 }
 
+export enum ETextFormats {
+  RESET = "reset",
+  BRIGHT = "bright",
+  DIM = "dim",
+  UNDERSCORE = "underscore",
+  BLINK = "blink",
+  REVERSE = "reverse",
+  HIDDEN = "hidden",
+}
+
+export enum ELogLevels {
+  DEBUG = "debug",
+  INFO = "info",
+  WARN = "warn",
+  ERROR = "error",
+  FATAL = "fatal",
+}
+
 export type TTextColors = Record<EColorsVariants, string>;
+export type TTextFormats = Record<ETextFormats, string>;
 export type TLoggerSettings = {
-  showTime?: boolean;
+  showTime: boolean;
+  enableLogLevels: boolean;
+  levelColors: Partial<Record<ELogLevels, EColorsVariants>>;
 }
 export type TLog = (...args: any[]) => void;
